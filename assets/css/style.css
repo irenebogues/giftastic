@@ -3,3 +3,8 @@ body {
         background-repeat: no-repeat;
         background-size: cover;
 }
+
+#search {
+    float: left;
+    padding-left: 120px;
+}

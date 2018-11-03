@@ -36,13 +36,35 @@ $(".doggieButton").on("click", function (){
             // console.log(results[i].rating)
             var dogImg = $("<img>");
             dogImg.attr("src", results[i].images.fixed_height.url);
-            // console.log(results[i].images.fixed_height.url)
-            dogImg.append(p); // THIS SHOWS THE P TAG IN THE CONSOLE.
+            console.log(results[i].images.fixed_height.url);
+            dogImg.append(p); 
             dogDiv.append(dogImg);
              // prepend to the dom
             $("#doggieGif").prepend(dogImg);
         }
     });
+});
+
+
+$("#add-doggie").on("click", function (event){
+    // console.log(event)
+    event.preventDefault();
+    // grab the input from the searchbox
+    var newDoggie = $("#search").val().trim();
+    // add search term to a new button and append to html
+    var doggieButton = $("<button>")
+    // console.log(doggieButton);
+    doggieButton.addClass("cartoonButton");
+    // give the new button an attribute of its index
+    doggieButton.attr("data-name", newDoggie)
+    // give the button its text
+    doggieButton.text(newDoggie)
+    // console.log(doggieButton)
+    $("#buttonDoggie").append(doggieButton)
+    // console.log(newDoggie);
+    // push new search to the topics array 
+    topics.push(newDoggie);
+    console.log(dog);
 });
 
 
@@ -57,4 +79,3 @@ $(".doggieButton").on("click", function (){
     // if btn from the form is clicked
         // get input value
         // push it to the topic-array
-        // (function populate()) populate items to the btns

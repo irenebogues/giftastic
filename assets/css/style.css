@@ -2,9 +2,13 @@ body {
     background-image: url(../images/picture.png);
         background-repeat: no-repeat;
         background-size: cover;
+        padding-left: 20px;
 }
 
-#search {
-    float: left;
-    padding-left: 120px;
-}
+form {
+    font-size:1.5em;
+  }
+  
+  button, div, form, input {
+      margin:10px;
+  }

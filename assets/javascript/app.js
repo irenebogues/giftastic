@@ -2,70 +2,115 @@
 
 
  // Start with a short Array for Good Doggies
+  var doggies = ["pug", "labrador", "pitbull"];
 
-    var doggies = ["pug", "labrador", "pitbull"];
 
-// auto create dynamic doogie buttons when user type their favorite dogs
+// auto create dynamic doggie buttons when user type their favorite dogs
+function doggieExpress(dogName){
+
+    var doggie = $(this).attr("data-name");
+  var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + doggie + "&api_key=PXyBdtBKhwr5zsbH773K4W58yrUOQG3r&limit=10";
+
+
+$.ajax({
+url: queryURL,
+method: "GET"
+}).done(function (response) {
+
+   // console.log(queryURL);
+
+   var doggieDiv = $("<div class='dog'>");
+   var results = response.data;
+
+   $("#dog-view").empty();
+   for (var i = 0; i < doggies.length; i++) {
+
+ //Filtering for an appropriate rating (PG-13 and under)
+ if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
+
+    // Generating div with class "item"
+    var doggieDiv = $("<div class='item'>");
+
+    //Generating a div to hold the giphys
+    var doggieDiv = $("<div>");
+
+    //Storing rating response
+    var rating = response.data.rating;
+
+    //Fetching URL for image
+    var imgURL = response.rating;
+
+    //Generating <p> and rating
+    var p = $("<p>").text("Rating: " + results[i].rating);
+
+    //Generating image tag
+    var doggie = $("<img>");
+
+    //Defining src attribute of the images pulled
+    doggie.attr("src", results[i].images.fixed_height.url);
+
+    //Appending rating to giphy
+    doggieDiv.append(p);
+    doggieDiv.append(doggie);
+
+    //Setting src and URL attributes to giphy
+    var image = $("<img>").attr("src", imgURL);
+
+    //Appending the giphy
+    doggieDiv.append(image);
+
+    //Prepending new giphys above previosly called giphys
+    $("#dog-view").prepend(doggieDiv);
+  }
+}
+});
+};
+
+//Calling renderButtons function
+function renderButtons() {
+
+//Prevents repeated buttons -- Do not remove.
+$("#faveDogs").empty();
+
+//For Loop
 for (var i = 0; i < doggies.length; i++) {
-    //console.log (doggies.length);
 
-    var newDoggie = $("<button>");
-    newDoggie.addClass ("doggieButton");
-    newDoggie.attr("data-name", doggies[i]);
-    newDoggie.text(doggies[i]);
-    $("#buttonAppear").append(newDoggie);
-
+//Generating buttons
+var a = $("<button>");
+//Adding class of dog
+a.addClass("doggie");
+//Adding data-attribute
+a.attr("data-name", doggies[i]);
+//Adding button text
+a.text(doggies[i]);
+//Appending the button to HTML
+$("#faveDogs").append(a);
+}
 }
 
-$(".doggieButton").on("click", function (){
+//On.click function; prevents duplication of initial buttons
+$("#add-dog").on("click", function (event) {
+event.preventDefault();
 
-// populate the array items to the doggie-btns
+//Stores user input from the textbox
+var doggie = $("#dog-input").val().trim();
 
-    var dog= $(this).attr("data-name");
-    var queryURL = "https:api.giphy.com/v1/gifs/search?q=" + dog + "&api_key=PXyBdtBKhwr5zsbH773K4W58yrUOQG3r";
-    //Ajax Call HERE
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).then(function(response){
-    for(var i = 0; i < results.length; i++){
-            var dogDiv = $("<div>");
-            var p = $("<p>");
-            // console.log(p)
-            p.text("Rating: " + results[i].rating);
-            // console.log(results[i].rating)
-            var dogImg = $("<img>");
-            dogImg.attr("src", results[i].images.fixed_height.url);
-            console.log(results[i].images.fixed_height.url);
-            dogImg.append(p); 
-            dogDiv.append(dogImg);
-             // prepend to the dom
-            $("#doggieGif").prepend(dogImg);
-        }
-    });
+//Removes previous giphys on.click
+$("doggie").empty();
+
+//Adds Users input from the textbox to array
+doggies.push(doggie);
+
+//Calls renderButtons function for User input buttons
+renderButtons();
 });
 
+//Adds a click event listener to elements with a class of "dog"
+$(document).on("click", ".doggie", displayGifInfo);
 
-$("#add-doggie").on("click", function (event){
-    // console.log(event)
-    event.preventDefault();
-    // grab the input from the searchbox
-    var newDoggie = $("#search").val().trim();
-    // add search term to a new button and append to html
-    var doggieButton = $("<button>")
-    // console.log(doggieButton);
-    doggieButton.addClass("cartoonButton");
-    // give the new button an attribute of its index
-    doggieButton.attr("data-name", newDoggie)
-    // give the button its text
-    doggieButton.text(newDoggie)
-    // console.log(doggieButton)
-    $("#buttonDoggie").append(doggieButton)
-    // console.log(newDoggie);
-    // push new search to the topics array 
-    topics.push(newDoggie);
-    console.log(dog);
-});
+//Calls the renderButtons function for the intial buttons as defined in the array
+renderButtons();
+
 
 
 //if doogie-btn is clicked

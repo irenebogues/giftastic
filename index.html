@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html> -->
 <html lang="en-us">
 <head>
         <meta charset="utf-8">
@@ -21,39 +21,29 @@
 <body>
         <div class="container">
         <div class="jumbotron jumbotron-fluid">
-            <div id="faveDogs">
                 <h1 class="display-3">Good Doggie GIFs</h1>
                 <hr class="my-2">
-                <p class="lead">
-                    <a class="btn btn-primary btn-lg" href="" role="button">I want a pug!</a>
-                    <a class="btn btn-primary btn-lg" href="" role="button">I want a labrador!</a>
-                    <a class="btn btn-primary btn-lg" href="" role="button">I want a pitbull!</a>
-                </p>
-                            </div>
-                        </div>    
-                    </div>
-                
+                 </div>
+                 </div>    
+                <div id="faveDogs"> </div>
+                    
+            
                 <!-- Search your own Doggie Gifs -->
-                <div class="col-sm-4">
-                    <div id="search">
-                    <div class="input-group-prepend">
-                    <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
-                    </div>
-                    <button class="btn-primary btn-lg" type="button">I want more doggies!</button>
-                        </div> 
-                    </div>
+                <form id="dog-form">
+                    <label form="dog-input">&nbsp;I want more doggies!</label>
+                    <br>
+                    <input type="text" id="dog-input" size="25">
+                    <br>
                 
-            <!-- Doogie GIFS HERE -->
-            <div id="doggieGif">
-            </div>
+                    <input id="add-dog" type="submit" value="Get Doggie With It!">
+                  </form>
+                  <div id="dog-view"></div>
 
             <!-- jQuery CDN -->
             <!-- Optional JavaScript -->
             <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
             <!-- Own JavaScript -->
-            <script src="./assets/javascript/app.js"></script>
+            <script type="text/javascript" src="./assets/javascript/app.js"></script>
 </body>
 </html>

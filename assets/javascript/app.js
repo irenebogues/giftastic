@@ -6,11 +6,11 @@
 
 
 // auto create dynamic doggie buttons when user type their favorite dogs
-function doggieExpress(dogName){
-
-    var doggie = $(this).attr("data-name");
+function displayGifInfo(dogName){
+console.log("hello");
+  var doggie = $(this).attr("data-name");
   var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + doggie + "&api_key=PXyBdtBKhwr5zsbH773K4W58yrUOQG3r&limit=10";
-
+console.log(queryURL);
 
 $.ajax({
 url: queryURL,
@@ -48,6 +48,7 @@ method: "GET"
 
     //Defining src attribute of the images pulled
     doggie.attr("src", results[i].images.fixed_height.url);
+    
 
     //Appending rating to giphy
     doggieDiv.append(p);
@@ -68,6 +69,7 @@ method: "GET"
 
 //Calling renderButtons function
 function renderButtons() {
+// console.log("helloworld");
 
 //Prevents repeated buttons -- Do not remove.
 $("#faveDogs").empty();
@@ -107,6 +109,7 @@ renderButtons();
 
 //Adds a click event listener to elements with a class of "dog"
 $(document).on("click", ".doggie", displayGifInfo);
+
 
 //Calls the renderButtons function for the intial buttons as defined in the array
 renderButtons();
